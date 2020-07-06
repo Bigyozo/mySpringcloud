@@ -14,5 +14,3 @@ spring:
         #hostname: 127.0.0.1
         service-name: ${spring.application.name}
         prefer-ip-address: true
-    inetutils:
-      preferred-networks: 106.39.151.159

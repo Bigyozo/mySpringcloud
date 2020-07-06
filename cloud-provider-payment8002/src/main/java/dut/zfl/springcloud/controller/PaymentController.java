@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author Zhangfanglong
@@ -45,5 +46,20 @@ public class PaymentController {
         } else {
             return new CommonResult(444, "查询id=" + id + "结果为空", null);
         }
+    }
+
+    @GetMapping(value = "/payment/lb", produces = "application/json;charset=utf-8")
+    public String getPaymentLB() {
+        return serverPort;
+    }
+
+    @GetMapping(value = "/payment/feign/timeout", produces = "application/json;charset=utf-8")
+    public String paymentFeignTimeout() {
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return serverPort;
     }
 }
